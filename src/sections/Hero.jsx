@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { AnimatedText } from '../components/AnimatedText'
+import { ParticleBackground } from '../components/ParticleBackground'
 import styles from './Hero.module.css'
 
 const TITLES = ['Junior Developer', 'React & Node.js', 'Telegram-боты', 'Ищу первую работу']
@@ -64,7 +65,8 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} className={styles.hero}>
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+      <ParticleBackground />
+      <div style={{ position: 'relative', zIndex: 1, width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
       <motion.div
         className={styles.content}
         variants={container}
@@ -101,6 +103,7 @@ export default function Hero() {
 
       <motion.div
         className={styles.scrollHint}
+        style={{ position: 'relative', zIndex: 1 }}
         animate={{ y: [0, 9, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
       >
