@@ -1,0 +1,26 @@
+# Rules for Cursor Agent
+
+## Stack
+- React + Vite
+- Motion (framer-motion v11+) for animations
+- Plain CSS modules (no Tailwind, no UI libraries)
+- No TypeScript — plain JavaScript
+
+## Code style
+- Functional components only
+- No class components
+- Import motion from 'motion/react'
+- Keep components small — max 80 lines per file
+- One component per file
+
+## What NOT to do
+- Do not install new packages without asking
+- Do not touch context.md, agents.md, tasks.md
+- Do not rewrite existing components — extend them
+- Do not use inline styles more than 2 properties
+
+## Before every task
+1. Read context.md
+2. Read tasks.md — find current task
+3. Do only that task
+4. After done — update tasks.md status

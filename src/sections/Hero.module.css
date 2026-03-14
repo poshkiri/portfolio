@@ -1,0 +1,111 @@
+.hero {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: var(--section-padding);
+  padding-top: clamp(80px, 10vw, 120px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.greeting {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.name {
+  background: linear-gradient(135deg, var(--color-text) 50%, var(--color-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.typewriterRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 2rem;
+}
+
+.typewriter {
+  color: var(--color-purple);
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 500;
+}
+
+.cursor {
+  color: var(--color-green);
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.button {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 38px;
+  border-radius: var(--radius-md);
+  background: var(--color-purple);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.button:hover {
+  background: var(--color-purple-dim);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-purple) 40%, transparent);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  translate: -50% 0;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .hero {
+    padding: 6rem 1.5rem 3rem;
+  }
+
+  .name {
+    font-size: 2.5rem;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 360px;
+    padding: 14px 24px;
+    justify-content: center;
+  }
+}
