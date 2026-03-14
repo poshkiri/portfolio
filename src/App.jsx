@@ -1,5 +1,6 @@
 import './styles/global.css'
 import { PageTransition } from './components/PageTransition'
+import { Spotlight } from './components/Spotlight'
 import Navbar from './components/Navbar'
 import { Ticker } from './components/Ticker'
 import Hero from './sections/Hero'
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
       <PageTransition />
+      <Spotlight />
       <Navbar />
       <Hero />
       <Ticker />
