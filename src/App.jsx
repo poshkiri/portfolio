@@ -1,4 +1,5 @@
 import './styles/global.css'
+import { PageTransition } from './components/PageTransition'
 import Navbar from './components/Navbar'
 import { Ticker } from './components/Ticker'
 import Hero from './sections/Hero'
@@ -10,6 +11,7 @@ import Contact from './sections/Contact'
 export default function App() {
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
+      <PageTransition />
       <Navbar />
       <Hero />
       <Ticker />
