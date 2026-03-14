@@ -69,7 +69,7 @@ export default function Hero() {
         variants={container}
         initial="hidden"
         animate="visible"
-        style={{ y: parallaxY, opacity: parallaxOpacity }}
+        style={{ y: parallaxY, opacity: parallaxOpacity, width: '100%' }}
       >
         <motion.p className={styles.greeting} variants={item}>
           Привет, я

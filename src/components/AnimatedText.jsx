@@ -22,6 +22,7 @@ const letterVariant = {
 
 export function AnimatedText({ text, type = 'letter', delay = 0 }) {
   const items = type === 'word' ? text.split(' ') : text.split('')
+  const isWord = type === 'word'
 
   return (
     <motion.span
@@ -41,6 +42,7 @@ export function AnimatedText({ text, type = 'letter', delay = 0 }) {
             whiteSpace: 'pre',
             color: 'var(--color-text)',
             WebkitTextFillColor: 'var(--color-text)',
+            marginRight: isWord ? '0.25em' : 0,
           }}
         >
           {item}
