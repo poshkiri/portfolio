@@ -115,3 +115,23 @@
   font-family: var(--font-mono);
   letter-spacing: 0.03em;
 }
+
+/* ── Repo link ── */
+.repoLink {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 6px 16px;
+  border: 1px solid var(--color-purple);
+  border-radius: var(--radius-sm);
+  color: var(--color-purple);
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+  align-self: flex-start;
+}
+
+.repoLink:hover {
+  background: var(--color-purple);
+  color: #fff;
+}
