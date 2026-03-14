@@ -65,6 +65,32 @@
   color: var(--color-text);
 }
 
+/* ── Actions (lang + burger) ── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── Lang toggle ── */
+.langBtn {
+  border: 1px solid var(--color-purple);
+  color: var(--color-purple);
+  background: transparent;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.langBtn:hover {
+  background: var(--color-purple);
+  color: #fff;
+}
+
 /* ── Burger ── */
 .burger {
   display: none;

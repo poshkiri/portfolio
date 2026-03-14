@@ -4,6 +4,11 @@ import { AnimatedText } from '../components/AnimatedText'
 import { TiltCard } from '../components/TiltCard'
 import styles from './Projects.module.css'
 
+const t = {
+  ru: { title: 'Проекты',  noDesc: 'Нет описания',  openRepo: 'Открыть на GitHub →', allRepos: 'Все репозитории на GitHub →', error: 'Не удалось загрузить репозитории. Попробуйте позже.' },
+  en: { title: 'Projects', noDesc: 'No description', openRepo: 'Open on GitHub →',   allRepos: 'All repositories on GitHub →', error: 'Failed to load repositories. Please try again later.' },
+}
+
 const langColors = {
   JavaScript: '#F7DF1E',
   Python:     '#3776AB',
@@ -42,7 +47,7 @@ function SkeletonCard() {
   )
 }
 
-export default function Projects() {
+export default function Projects({ lang = 'ru' }) {
   const [repos, setRepos]     = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError]     = useState(false)
@@ -74,12 +79,12 @@ export default function Projects() {
       <div className={styles.container}>
 
         <h2 className={styles.heading}>
-          <AnimatedText text="Проекты" type="word" />
+          <AnimatedText text={t[lang].title} type="word" />
         </h2>
 
         {error && (
           <p style={{ color: 'var(--color-muted)', marginBottom: 24 }}>
-            Не удалось загрузить репозитории. Попробуйте позже.
+            {t[lang].error}
           </p>
         )}
 
@@ -117,7 +122,7 @@ export default function Projects() {
                   </div>
 
                   <p className={styles.description}>
-                    {repo.description || 'Нет описания'}
+                    {repo.description || t[lang].noDesc}
                   </p>
 
                   <div className={styles.tags}>
@@ -137,7 +142,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                     className={styles.repoLink}
                   >
-                    Открыть на GitHub →
+                    {t[lang].openRepo}
                   </a>
                 </TiltCard>
               </motion.div>
@@ -157,7 +162,7 @@ export default function Projects() {
               letterSpacing: '0.02em',
             }}
           >
-            Все репозитории на GitHub →
+            {t[lang].allRepos}
           </a>
         </div>
 

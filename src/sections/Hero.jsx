@@ -4,7 +4,15 @@ import { AnimatedText } from '../components/AnimatedText'
 import { ParticleBackground } from '../components/ParticleBackground'
 import styles from './Hero.module.css'
 
-const TITLES = ['Junior Developer', 'React & Node.js', 'Telegram-боты', 'Ищу первую работу']
+const TITLES = {
+  ru: ['Junior Developer', 'React & Node.js', 'Telegram-боты', 'Ищу первую работу'],
+  en: ['Junior Developer', 'React & Node.js', 'Telegram bots', 'Looking for first job'],
+}
+
+const t = {
+  ru: { greeting: 'ПРИВЕТ, Я', button: 'Связаться',   scroll: '↓ листай вниз'  },
+  en: { greeting: "HI, I'M",   button: 'Contact me',  scroll: '↓ scroll down'  },
+}
 
 function useTypewriter(texts, typeSpeed = 80, deleteSpeed = 45, pause = 1600) {
   const [displayed, setDisplayed] = useState('')
@@ -47,8 +55,8 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
-export default function Hero() {
-  const title = useTypewriter(TITLES)
+export default function Hero({ lang = 'ru' }) {
+  const title = useTypewriter(TITLES[lang])
   const sectionRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
@@ -75,7 +83,7 @@ export default function Hero() {
         style={{ y: parallaxY, opacity: parallaxOpacity, width: '100%', textAlign: 'center' }}
       >
         <motion.p className={styles.greeting} variants={item}>
-          Привет, я
+          {t[lang].greeting}
         </motion.p>
 
         <h1 className={styles.name} style={{ WebkitTextFillColor: 'unset' }}>
@@ -96,7 +104,7 @@ export default function Hero() {
           whileTap={{ scale: 0.97 }}
           data-cursor="hover"
         >
-          Связаться
+          {t[lang].button}
         </motion.a>
       </motion.div>
       </div>
@@ -107,7 +115,7 @@ export default function Hero() {
         animate={{ y: [0, 9, 0] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
       >
-        ↓ листай вниз
+        {t[lang].scroll}
       </motion.div>
     </section>
   )

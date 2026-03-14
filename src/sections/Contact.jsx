@@ -4,6 +4,31 @@ import emailjs from '@emailjs/browser'
 import { AnimatedText } from '../components/AnimatedText'
 import styles from './Contact.module.css'
 
+const t = {
+  ru: {
+    title:    'Связаться',
+    subtitle: 'Открыт к стажировке и позиции junior-разработчика.\nПредпочитаю письменную коммуникацию — отвечу быстро.',
+    name:     'Ваше имя',
+    email:    'Ваш email',
+    message:  'Сообщение',
+    send:     'Отправить сообщение',
+    sending:  'Отправляю...',
+    success:  '✓ Отправлено!',
+    error:    'Ошибка, попробуй снова',
+  },
+  en: {
+    title:    'Contact',
+    subtitle: 'Open to internship and junior developer positions.\nI prefer written communication — will respond quickly.',
+    name:     'Your name',
+    email:    'Your email',
+    message:  'Message',
+    send:     'Send message',
+    sending:  'Sending...',
+    success:  '✓ Sent!',
+    error:    'Error, please try again',
+  },
+}
+
 const SERVICE_ID  = 'service_esj7dcl'
 const TEMPLATE_ID = 'template_eun07eo'
 const PUBLIC_KEY  = 'a4WMtsgjFGQGmYbwr'
@@ -46,16 +71,17 @@ const submitColors = {
   error:    { bg: '#E24B4A',      text: '#fff',    border: '#E24B4A' },
 }
 
-const submitLabels = {
-  idle:    'Отправить сообщение',
-  sending: 'Отправляю...',
-  success: '✓ Отправлено!',
-  error:   'Ошибка, попробуй снова',
-}
+const submitLabels = (tr) => ({
+  idle:    tr.send,
+  sending: tr.sending,
+  success: tr.success,
+  error:   tr.error,
+})
 
-export default function Contact() {
+export default function Contact({ lang = 'ru' }) {
   const formRef = useRef(null)
   const [status, setStatus] = useState('idle')
+  const tr = t[lang]
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -72,13 +98,14 @@ export default function Contact() {
   }
 
   const colors = submitColors[status]
+  const labels = submitLabels(tr)
 
   return (
     <section id="contact" className={styles.contact}>
       <div className={styles.container}>
 
         <h2 className={styles.heading}>
-          <AnimatedText text="Связаться" type="word" />
+          <AnimatedText text={tr.title} type="word" />
         </h2>
 
         <motion.p
@@ -88,9 +115,9 @@ export default function Contact() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
         >
-          Открыт к стажировке и позиции junior-разработчика.
-          <br />
-          Предпочитаю письменную коммуникацию — отвечу быстро.
+          {tr.subtitle.split('\n').map((line, i) => (
+            <span key={i}>{line}{i === 0 && <br />}</span>
+          ))}
         </motion.p>
 
         {/* ── Contact form ── */}
@@ -106,7 +133,7 @@ export default function Contact() {
           <input
             name="from_name"
             type="text"
-            placeholder="Ваше имя"
+            placeholder={tr.name}
             required
             style={fieldStyle}
             onFocus={e => { e.target.style.borderColor = '#7F77DD' }}
@@ -115,7 +142,7 @@ export default function Contact() {
           <input
             name="from_email"
             type="email"
-            placeholder="Ваш email"
+            placeholder={tr.email}
             required
             style={fieldStyle}
             onFocus={e => { e.target.style.borderColor = '#7F77DD' }}
@@ -123,7 +150,7 @@ export default function Contact() {
           />
           <textarea
             name="message"
-            placeholder="Сообщение"
+            placeholder={tr.message}
             rows={4}
             required
             style={{ ...fieldStyle, resize: 'vertical' }}
@@ -149,7 +176,7 @@ export default function Contact() {
               transition: 'background 0.25s, color 0.25s, border-color 0.25s',
             }}
           >
-            {submitLabels[status]}
+            {labels[status]}
           </motion.button>
         </motion.form>
 

@@ -2,6 +2,21 @@ import { motion } from 'motion/react'
 import { AnimatedText } from '../components/AnimatedText'
 import styles from './About.module.css'
 
+const t = {
+  ru: {
+    title: 'Обо мне',
+    badge: 'Открыт к удалённой работе',
+    p1: <>Самостоятельно осваиваю веб-разработку уже{' '}<strong>5 месяцев</strong>. Работаю с{' '}<strong>React, Node.js, Supabase</strong> и Telegram-ботами — от идеи до деплоя на Vercel.</>,
+    p2: <>Использую AI-инструменты (<strong>Cursor, ChatGPT</strong>) для ускорения обучения. Предпочитаю письменную коммуникацию — это делает меня идеальным кандидатом для удалённой async-команды.</>,
+  },
+  en: {
+    title: 'About me',
+    badge: 'Open to remote work',
+    p1: <>Self-taught web developer for{' '}<strong>5 months</strong>. Working with{' '}<strong>React, Node.js, Supabase</strong> and Telegram bots — from idea to deploy on Vercel.</>,
+    p2: <>I use AI tools (<strong>Cursor, ChatGPT</strong>) to accelerate learning. I prefer written communication — which makes me an ideal candidate for a remote async team.</>,
+  },
+}
+
 const container = {
   hidden: {},
   visible: {
@@ -19,13 +34,13 @@ const lineReveal = {
   visible: { scaleY: 1, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-export default function About() {
+export default function About({ lang = 'ru' }) {
   return (
     <section id="about" className={styles.about}>
       <div className={styles.container}>
 
         <h2 className={styles.heading}>
-          <AnimatedText text="Обо мне" type="word" delay={0.2} />
+          <AnimatedText text={t[lang].title} type="word" delay={0.2} />
         </h2>
 
         <motion.div
@@ -36,7 +51,6 @@ export default function About() {
           viewport={{ once: true, amount: 0.2 }}
           style={{ borderLeft: 'none', position: 'relative', paddingLeft: '28px' }}
         >
-          {/* Animated accent line */}
           <motion.span
             aria-hidden="true"
             variants={lineReveal}
@@ -51,22 +65,12 @@ export default function About() {
             }}
           />
 
-          <motion.p variants={item}>
-            Самостоятельно осваиваю веб-разработку уже{' '}
-            <strong>5 месяцев</strong>. Работаю с{' '}
-            <strong>React, Node.js, Supabase</strong> и Telegram-ботами —
-            от идеи до деплоя на Vercel.
-          </motion.p>
-
-          <motion.p variants={item}>
-            Использую AI-инструменты (<strong>Cursor, ChatGPT</strong>) для
-            ускорения обучения. Предпочитаю письменную коммуникацию — это
-            делает меня идеальным кандидатом для удалённой async-команды.
-          </motion.p>
+          <motion.p variants={item}>{t[lang].p1}</motion.p>
+          <motion.p variants={item}>{t[lang].p2}</motion.p>
 
           <motion.div className={styles.badge} variants={item}>
             <span className={styles.badgeDot} />
-            Открыт к удалённой работе
+            {t[lang].badge}
           </motion.div>
         </motion.div>
 

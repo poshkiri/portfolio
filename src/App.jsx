@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './styles/global.css'
 import { PageTransition } from './components/PageTransition'
 import { Spotlight } from './components/Spotlight'
@@ -11,18 +12,21 @@ import Projects from './sections/Projects'
 import Contact from './sections/Contact'
 
 export default function App() {
+  const [lang, setLang] = useState('ru')
+  const toggleLang = () => setLang(l => l === 'ru' ? 'en' : 'ru')
+
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
       <PageTransition />
       <Spotlight />
-      <Navbar />
-      <Hero />
+      <Navbar lang={lang} onLangToggle={toggleLang} />
+      <Hero lang={lang} />
       <Ticker />
-      <About />
+      <About lang={lang} />
       <Counter />
-      <Skills />
-      <Projects />
-      <Contact />
+      <Skills lang={lang} />
+      <Projects lang={lang} />
+      <Contact lang={lang} />
     </div>
   )
 }
