@@ -1,0 +1,8 @@
+/* Ticker uses inline styles for animation-critical properties.
+   This file is reserved for future overrides. */
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker motion {
+    animation: none !important;
+  }
+}

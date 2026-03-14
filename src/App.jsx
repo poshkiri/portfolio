@@ -1,6 +1,7 @@
 import './styles/global.css'
 import CustomCursor from './components/CustomCursor'
 import Navbar from './components/Navbar'
+import { Ticker } from './components/Ticker'
 import Hero from './sections/Hero'
 import About from './sections/About'
 import Skills from './sections/Skills'
@@ -13,6 +14,7 @@ export default function App() {
       <CustomCursor />
       <Navbar />
       <Hero />
+      <Ticker />
       <About />
       <Skills />
       <Projects />
