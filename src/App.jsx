@@ -1,5 +1,5 @@
 import './styles/global.css'
-import CustomCursor from './components/CustomCursor'
+import { CustomCursor } from './components/CustomCursor'
 import Navbar from './components/Navbar'
 import { Ticker } from './components/Ticker'
 import Hero from './sections/Hero'
