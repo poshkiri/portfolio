@@ -64,12 +64,13 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} className={styles.hero}>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
       <motion.div
         className={styles.content}
         variants={container}
         initial="hidden"
         animate="visible"
-        style={{ y: parallaxY, opacity: parallaxOpacity, width: '100%' }}
+        style={{ y: parallaxY, opacity: parallaxOpacity, width: '100%', textAlign: 'center' }}
       >
         <motion.p className={styles.greeting} variants={item}>
           Привет, я
@@ -96,6 +97,7 @@ export default function Hero() {
           Связаться
         </motion.a>
       </motion.div>
+      </div>
 
       <motion.div
         className={styles.scrollHint}

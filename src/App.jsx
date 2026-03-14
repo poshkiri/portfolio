@@ -10,7 +10,7 @@ import Contact from './sections/Contact'
 
 export default function App() {
   return (
-    <>
+    <div style={{ width: '100%', overflowX: 'hidden' }}>
       <CustomCursor />
       <Navbar />
       <Hero />
@@ -19,6 +19,6 @@ export default function App() {
       <Skills />
       <Projects />
       <Contact />
-    </>
+    </div>
   )
 }
