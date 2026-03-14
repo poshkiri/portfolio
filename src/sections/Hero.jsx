@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import styles from './Hero.module.css'
 
-const TITLES = ['Junior Developer', 'React & Node.js', 'Telegram Bots']
+const TITLES = ['Junior Developer', 'React & Node.js', 'Telegram-боты', 'Ищу первую работу']
 
 function useTypewriter(texts, typeSpeed = 80, deleteSpeed = 45, pause = 1600) {
   const [displayed, setDisplayed] = useState('')
