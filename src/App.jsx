@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import { Ticker } from './components/Ticker'
 import Hero from './sections/Hero'
 import About from './sections/About'
+import { Counter } from './components/Counter'
 import Skills from './sections/Skills'
 import Projects from './sections/Projects'
 import Contact from './sections/Contact'
@@ -18,6 +19,7 @@ export default function App() {
       <Hero />
       <Ticker />
       <About />
+      <Counter />
       <Skills />
       <Projects />
       <Contact />
