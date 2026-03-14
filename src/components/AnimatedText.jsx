@@ -36,7 +36,12 @@ export function AnimatedText({ text, type = 'letter', delay = 0 }) {
         <motion.span
           key={i}
           variants={letterVariant}
-          style={{ display: 'inline-block', whiteSpace: 'pre' }}
+          style={{
+            display: 'inline-block',
+            whiteSpace: 'pre',
+            color: 'var(--color-text)',
+            WebkitTextFillColor: 'var(--color-text)',
+          }}
         >
           {item}
         </motion.span>

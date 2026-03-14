@@ -75,7 +75,7 @@ export default function Hero() {
           Привет, я
         </motion.p>
 
-        <h1 className={styles.name}>
+        <h1 className={styles.name} style={{ WebkitTextFillColor: 'unset' }}>
           <AnimatedText text="Максим Петруха" type="letter" />
         </h1>
 
