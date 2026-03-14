@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { AnimatedText } from '../components/AnimatedText'
+import { TiltCard } from '../components/TiltCard'
 import styles from './Skills.module.css'
 
 const SKILLS = [
@@ -43,14 +44,13 @@ export default function Skills() {
           {SKILLS.map(({ icon, name, level }) => (
             <motion.div
               key={name}
-              className={styles.card}
               variants={card}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <span className={styles.icon} aria-hidden="true">{icon}</span>
-              <span className={styles.name}>{name}</span>
-              <span className={styles.level}>{level}</span>
+              <TiltCard className={styles.card}>
+                <span className={styles.icon} aria-hidden="true">{icon}</span>
+                <span className={styles.name}>{name}</span>
+                <span className={styles.level}>{level}</span>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>

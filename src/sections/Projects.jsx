@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { AnimatedText } from '../components/AnimatedText'
+import { TiltCard } from '../components/TiltCard'
 import styles from './Projects.module.css'
 
 const PROJECTS = [
@@ -55,34 +56,30 @@ export default function Projects() {
           {PROJECTS.map(({ title, description, tags, status }) => (
             <motion.div
               key={title}
-              className={styles.card}
               variants={card}
-              whileHover={{
-                y: -4,
-                boxShadow: '0 12px 32px rgba(0,0,0,0.45)',
-              }}
-              transition={{ type: 'spring', stiffness: 280, damping: 22 }}
             >
-              <div className={styles.cardHeader}>
-                <span className={styles.title}>{title}</span>
-                <span
-                  className={
-                    status === 'Текущий проект'
-                      ? `${styles.status} ${styles.statusCurrent}`
-                      : `${styles.status} ${styles.statusDefault}`
-                  }
-                >
-                  {status}
-                </span>
-              </div>
+              <TiltCard className={styles.card}>
+                <div className={styles.cardHeader}>
+                  <span className={styles.title}>{title}</span>
+                  <span
+                    className={
+                      status === 'Текущий проект'
+                        ? `${styles.status} ${styles.statusCurrent}`
+                        : `${styles.status} ${styles.statusDefault}`
+                    }
+                  >
+                    {status}
+                  </span>
+                </div>
 
-              <p className={styles.description}>{description}</p>
+                <p className={styles.description}>{description}</p>
 
-              <div className={styles.tags}>
-                {tags.map(tag => (
-                  <span key={tag} className={styles.tag}>{tag}</span>
-                ))}
-              </div>
+                <div className={styles.tags}>
+                  {tags.map(tag => (
+                    <span key={tag} className={styles.tag}>{tag}</span>
+                  ))}
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>
