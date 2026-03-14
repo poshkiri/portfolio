@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
+import { useState, useEffect, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import styles from './Hero.module.css'
 
 const TITLES = ['Junior Developer', 'React & Node.js', 'Telegram-боты', 'Ищу первую работу']
@@ -47,6 +47,14 @@ const item = {
 
 export default function Hero() {
   const title = useTypewriter(TITLES)
+  const sectionRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const parallaxY       = useTransform(scrollYProgress, [0, 1],   [0, -100])
+  const parallaxOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   function handleContactClick(e) {
     e.preventDefault()
@@ -54,12 +62,13 @@ export default function Hero() {
   }
 
   return (
-    <section className={styles.hero}>
+    <section ref={sectionRef} className={styles.hero}>
       <motion.div
         className={styles.content}
         variants={container}
         initial="hidden"
         animate="visible"
+        style={{ y: parallaxY, opacity: parallaxOpacity }}
       >
         <motion.p className={styles.greeting} variants={item}>
           Привет, я
