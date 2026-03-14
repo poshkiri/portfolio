@@ -1,11 +1,17 @@
+import { useRef, useState } from 'react'
 import { motion } from 'motion/react'
+import emailjs from '@emailjs/browser'
 import { AnimatedText } from '../components/AnimatedText'
 import styles from './Contact.module.css'
 
+const SERVICE_ID  = 'service_esj7dcl'
+const TEMPLATE_ID = 'template_eun07eo'
+const PUBLIC_KEY  = 'a4WMtsgjFGQGmYbwr'
+
 const LINKS = [
-  { icon: '✈️', label: 'Telegram', url: 'https://t.me/poshkiri'                   },
-  { icon: '📧', label: 'Email',    url: 'mailto:mppamaksnm2018@gmail.com'          },
-  { icon: '🐙', label: 'GitHub',   url: 'https://github.com/poshkiri'             },
+  { icon: '✈️', label: 'Telegram', url: 'https://t.me/poshkiri'              },
+  { icon: '📧', label: 'Email',    url: 'mailto:mppamaksnm2018@gmail.com'     },
+  { icon: '🐙', label: 'GitHub',   url: 'https://github.com/poshkiri'        },
 ]
 
 const list = {
@@ -18,7 +24,55 @@ const linkItem = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
+const fieldStyle = {
+  width: '100%',
+  padding: '12px 16px',
+  background: '#1a1a1a',
+  border: '1px solid #ffffff15',
+  borderRadius: 8,
+  color: '#fff',
+  fontSize: 14,
+  fontFamily: 'inherit',
+  marginBottom: 12,
+  outline: 'none',
+  transition: 'border-color 0.2s',
+  boxSizing: 'border-box',
+}
+
+const submitColors = {
+  idle:     { bg: 'transparent',  text: '#7F77DD', border: '#7F77DD' },
+  sending:  { bg: 'transparent',  text: '#888',    border: '#555'    },
+  success:  { bg: '#1D9E75',      text: '#fff',    border: '#1D9E75' },
+  error:    { bg: '#E24B4A',      text: '#fff',    border: '#E24B4A' },
+}
+
+const submitLabels = {
+  idle:    'Отправить сообщение',
+  sending: 'Отправляю...',
+  success: '✓ Отправлено!',
+  error:   'Ошибка, попробуй снова',
+}
+
 export default function Contact() {
+  const formRef = useRef(null)
+  const [status, setStatus] = useState('idle')
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+      setStatus('success')
+      e.target.reset()
+      setTimeout(() => setStatus('idle'), 4000)
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
+  }
+
+  const colors = submitColors[status]
+
   return (
     <section id="contact" className={styles.contact}>
       <div className={styles.container}>
@@ -39,6 +93,67 @@ export default function Contact() {
           Предпочитаю письменную коммуникацию — отвечу быстро.
         </motion.p>
 
+        {/* ── Contact form ── */}
+        <motion.form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          style={{ width: '100%', maxWidth: 480, margin: '0 auto 2rem' }}
+        >
+          <input
+            name="from_name"
+            type="text"
+            placeholder="Ваше имя"
+            required
+            style={fieldStyle}
+            onFocus={e => { e.target.style.borderColor = '#7F77DD' }}
+            onBlur={e  => { e.target.style.borderColor = '#ffffff15' }}
+          />
+          <input
+            name="from_email"
+            type="email"
+            placeholder="Ваш email"
+            required
+            style={fieldStyle}
+            onFocus={e => { e.target.style.borderColor = '#7F77DD' }}
+            onBlur={e  => { e.target.style.borderColor = '#ffffff15' }}
+          />
+          <textarea
+            name="message"
+            placeholder="Сообщение"
+            rows={4}
+            required
+            style={{ ...fieldStyle, resize: 'vertical' }}
+            onFocus={e => { e.target.style.borderColor = '#7F77DD' }}
+            onBlur={e  => { e.target.style.borderColor = '#ffffff15' }}
+          />
+          <motion.button
+            type="submit"
+            disabled={status === 'sending'}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.1 }}
+            style={{
+              width: '100%',
+              padding: '13px 24px',
+              background: colors.bg,
+              border: `1px solid ${colors.border}`,
+              borderRadius: 8,
+              color: colors.text,
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              fontFamily: 'inherit',
+              cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+              transition: 'background 0.25s, color 0.25s, border-color 0.25s',
+            }}
+          >
+            {submitLabels[status]}
+          </motion.button>
+        </motion.form>
+
+        {/* ── Social links ── */}
         <motion.div
           className={styles.buttons}
           variants={list}
