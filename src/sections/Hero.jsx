@@ -90,6 +90,7 @@ export default function Hero() {
           onClick={handleContactClick}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
+          data-cursor="hover"
         >
           Связаться
         </motion.a>

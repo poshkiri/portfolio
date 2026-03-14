@@ -55,7 +55,7 @@ export default function Navbar() {
 
           <nav className={styles.links}>
             {LINKS.map(({ label, id }) => (
-              <button key={id} className={styles.link} onClick={() => scrollTo(id)}>
+              <button key={id} className={styles.link} onClick={() => scrollTo(id)} data-cursor="hover">
                 {label}
               </button>
             ))}
@@ -66,6 +66,7 @@ export default function Navbar() {
             onClick={() => setOpen(v => !v)}
             animate={open ? 'open' : 'closed'}
             aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
+            data-cursor="hover"
           >
             <motion.span className={styles.burgerLine} variants={topLine}
               transition={{ duration: 0.3 }} />
@@ -87,7 +88,7 @@ export default function Navbar() {
             exit="exit"
           >
             {LINKS.map(({ label, id }) => (
-              <button key={id} className={styles.mobileLink} onClick={() => handleLink(id)}>
+              <button key={id} className={styles.mobileLink} onClick={() => handleLink(id)} data-cursor="hover">
                 {label}
               </button>
             ))}

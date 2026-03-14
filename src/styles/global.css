@@ -31,6 +31,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ── Custom cursor ── */
+@media (pointer: fine) {
+  * { cursor: none; }
+}
+@media (pointer: coarse) {
+  * { cursor: auto; }
+}
+
 html {
   scroll-behavior: smooth;
   font-size: 16px;

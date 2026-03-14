@@ -1,4 +1,5 @@
 import './styles/global.css'
+import CustomCursor from './components/CustomCursor'
 import Navbar from './components/Navbar'
 import Hero from './sections/Hero'
 import About from './sections/About'
@@ -9,6 +10,7 @@ import Contact from './sections/Contact'
 export default function App() {
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <Hero />
       <About />

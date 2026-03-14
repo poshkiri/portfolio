@@ -69,6 +69,7 @@ export default function Contact() {
               }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.22, ease: 'easeInOut' }}
+              data-cursor="hover"
             >
               <span className={styles.buttonIcon} aria-hidden="true">{icon}</span>
               {label}
