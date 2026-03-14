@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { AnimatedText } from '../components/AnimatedText'
 import styles from './Projects.module.css'
 
 const PROJECTS = [
@@ -40,15 +41,9 @@ export default function Projects() {
     <section id="projects" className={styles.projects}>
       <div className={styles.container}>
 
-        <motion.h2
-          className={styles.heading}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          Проекты
-        </motion.h2>
+        <h2 className={styles.heading}>
+          <AnimatedText text="Проекты" type="word" />
+        </h2>
 
         <motion.div
           className={styles.grid}

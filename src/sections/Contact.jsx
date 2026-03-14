@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { AnimatedText } from '../components/AnimatedText'
 import styles from './Contact.module.css'
 
 const LINKS = [
@@ -22,15 +23,9 @@ export default function Contact() {
     <section id="contact" className={styles.contact}>
       <div className={styles.container}>
 
-        <motion.h2
-          className={styles.heading}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          Связаться
-        </motion.h2>
+        <h2 className={styles.heading}>
+          <AnimatedText text="Связаться" type="word" />
+        </h2>
 
         <motion.p
           className={styles.subtitle}

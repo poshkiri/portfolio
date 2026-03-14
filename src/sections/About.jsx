@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { AnimatedText } from '../components/AnimatedText'
 import styles from './About.module.css'
 
 const container = {
@@ -23,15 +24,9 @@ export default function About() {
     <section id="about" className={styles.about}>
       <div className={styles.container}>
 
-        <motion.h2
-          className={styles.heading}
-          variants={item}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          Обо мне
-        </motion.h2>
+        <h2 className={styles.heading}>
+          <AnimatedText text="Обо мне" type="word" delay={0.2} />
+        </h2>
 
         <motion.div
           className={styles.bio}

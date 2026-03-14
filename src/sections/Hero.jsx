@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
+import { AnimatedText } from '../components/AnimatedText'
 import styles from './Hero.module.css'
 
 const TITLES = ['Junior Developer', 'React & Node.js', 'Telegram-боты', 'Ищу первую работу']
@@ -74,9 +75,9 @@ export default function Hero() {
           Привет, я
         </motion.p>
 
-        <motion.h1 className={styles.name} variants={item}>
-          Максим Петруха
-        </motion.h1>
+        <h1 className={styles.name}>
+          <AnimatedText text="Максим Петруха" type="letter" />
+        </h1>
 
         <motion.div className={styles.typewriterRow} variants={item}>
           <span className={styles.typewriter}>{title}</span>

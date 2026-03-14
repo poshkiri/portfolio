@@ -1,4 +1,5 @@
 import { motion } from 'motion/react'
+import { AnimatedText } from '../components/AnimatedText'
 import styles from './Skills.module.css'
 
 const SKILLS = [
@@ -28,15 +29,9 @@ export default function Skills() {
     <section id="skills" className={styles.skills}>
       <div className={styles.container}>
 
-        <motion.h2
-          className={styles.heading}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          Навыки
-        </motion.h2>
+        <h2 className={styles.heading}>
+          <AnimatedText text="Навыки" type="word" />
+        </h2>
 
         <motion.div
           className={styles.grid}
