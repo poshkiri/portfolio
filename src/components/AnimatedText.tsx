@@ -1,5 +1,11 @@
 import { motion } from 'motion/react'
 
+interface AnimatedTextProps {
+  text: string
+  type?: 'word' | 'letter'
+  delay?: number
+}
+
 const container = {
   hidden: {},
   show: {
@@ -20,7 +26,7 @@ const letterVariant = {
   },
 }
 
-export function AnimatedText({ text, type = 'letter', delay = 0 }) {
+export function AnimatedText({ text, type = 'letter', delay = 0 }: AnimatedTextProps) {
   const items = type === 'word' ? text.split(' ') : text.split('')
   const isWord = type === 'word'
 

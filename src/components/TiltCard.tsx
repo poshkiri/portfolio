@@ -1,8 +1,14 @@
-import { useRef } from 'react'
+import { useRef, CSSProperties, ReactNode } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 
-export function TiltCard({ children, style, className }) {
-  const ref = useRef(null)
+interface TiltCardProps {
+  children: ReactNode
+  style?: CSSProperties
+  className?: string
+}
+
+export function TiltCard({ children, style, className }: TiltCardProps) {
+  const ref = useRef<HTMLDivElement>(null)
 
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -13,7 +19,8 @@ export function TiltCard({ children, style, className }) {
   const rotateX = useTransform(ySpring, [-0.5, 0.5], ['12deg', '-12deg'])
   const rotateY = useTransform(xSpring, [-0.5, 0.5], ['-12deg', '12deg'])
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const px = (e.clientX - rect.left) / rect.width - 0.5
     const py = (e.clientY - rect.top) / rect.height - 0.5
@@ -28,7 +35,7 @@ export function TiltCard({ children, style, className }) {
 
   const glowBackground = useTransform(
     [xSpring, ySpring],
-    ([lx, ly]) =>
+    ([lx, ly]: number[]) =>
       `radial-gradient(circle at ${(lx + 0.5) * 100}% ${(ly + 0.5) * 100}%, rgba(127,119,221,0.15) 0%, transparent 70%)`
   )
 

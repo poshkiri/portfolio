@@ -12,7 +12,7 @@ import Projects from './sections/Projects'
 import Contact from './sections/Contact'
 
 export default function App() {
-  const [lang, setLang] = useState('ru')
+  const [lang, setLang] = useState<'ru' | 'en'>('ru')
   const toggleLang = () => setLang(l => l === 'ru' ? 'en' : 'ru')
 
   return (
